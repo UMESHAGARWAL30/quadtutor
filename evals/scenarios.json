@@ -1,0 +1,58 @@
+[
+  {
+    "id": "correct_answer_advances",
+    "student_text": "I think x is 2.",
+    "fake_llm": {"extracted_answer":"2","intent":"answer","is_correct":true,"decision":"clarify","reason":"student gave the right root","speak":"Yes, 2 works. Well done.","whiteboard":{"action":"add","content":"x=2 ✓","highlight":"x=2"}},
+    "student_before": {"correct_streak": 1, "wrong_streak": 0, "current_concept": 0, "status": "active"},
+    "expect": {"decision": "advance", "concept_index": 1}
+  },
+  {
+    "id": "second_correct_still_clarify",
+    "student_text": "x equals 2.",
+    "fake_llm": {"extracted_answer":"2","intent":"answer","is_correct":true,"decision":"advance","reason":"looks right","speak":"Nice.","whiteboard":{"action":"add","content":"x=2","highlight":null}},
+    "student_before": {"correct_streak": 0, "wrong_streak": 0, "current_concept": 0, "status": "active"},
+    "expect": {"decision": "clarify", "concept_index": 0}
+  },
+  {
+    "id": "two_wrong_triggers_reteach",
+    "student_text": "I don't get it.",
+    "fake_llm": {"extracted_answer":null,"intent":"confused","is_correct":false,"decision":"clarify","reason":"student confused","speak":"Let's try another way.","whiteboard":{"action":"add","content":"x^2 - 5x + 6 = 0","highlight":"x^2"}},
+    "student_before": {"correct_streak": 0, "wrong_streak": 1, "current_concept": 0, "status": "active"},
+    "expect": {"decision": "reteach", "concept_index": 0}
+  },
+  {
+    "id": "wrong_answer_on_first_try_clarify",
+    "student_text": "x equals 5?",
+    "fake_llm": {"extracted_answer":"5","intent":"answer","is_correct":false,"decision":"reteach","reason":"wrong","speak":"Let's check.","whiteboard":{"action":"add","content":"5^2 - 5*5 + 6 = 6 ≠ 0","highlight":"6 ≠ 0"}},
+    "student_before": {"correct_streak": 0, "wrong_streak": 0, "current_concept": 0, "status": "active"},
+    "expect": {"decision": "clarify", "concept_index": 0}
+  },
+  {
+    "id": "off_topic_clarifies",
+    "student_text": "What's the weather?",
+    "fake_llm": {"extracted_answer":null,"intent":"off_topic","is_correct":null,"decision":"clarify","reason":"off topic","speak":"Let's stay on quadratics.","whiteboard":{"action":"replace","content":"x^2 - 5x + 6 = 0","highlight":null}},
+    "student_before": {"correct_streak": 0, "wrong_streak": 0, "current_concept": 0, "status": "active"},
+    "expect": {"decision": "clarify", "concept_index": 0}
+  },
+  {
+    "id": "advance_on_last_concept_marks_done",
+    "student_text": "The roots are 2 and 3.",
+    "fake_llm": {"extracted_answer":"2,3","intent":"answer","is_correct":true,"decision":"advance","reason":"correct","speak":"Correct, 2 and 3.","whiteboard":{"action":"add","content":"x=2, x=3","highlight":"x=3"}},
+    "student_before": {"correct_streak": 1, "wrong_streak": 0, "current_concept": 5, "status": "active"},
+    "expect": {"decision": "advance", "status": "done"}
+  },
+  {
+    "id": "advance_requires_streak_not_single_correct",
+    "student_text": "x is 3.",
+    "fake_llm": {"extracted_answer":"3","intent":"answer","is_correct":true,"decision":"advance","reason":"correct","speak":"Yes.","whiteboard":{"action":"add","content":"x=3","highlight":"x=3"}},
+    "student_before": {"correct_streak": 0, "wrong_streak": 0, "current_concept": 2, "status": "active"},
+    "expect": {"decision": "clarify", "concept_index": 2}
+  },
+  {
+    "id": "concept_progression_independent_of_llm_decision",
+    "student_text": "it's 4",
+    "fake_llm": {"extracted_answer":"4","intent":"answer","is_correct":true,"decision":"reteach","reason":"llm says reteach but code should advance","speak":"Yes, 4 works.","whiteboard":{"action":"add","content":"x=4 ✓","highlight":"x=4"}},
+    "student_before": {"correct_streak": 1, "wrong_streak": 0, "current_concept": 1, "status": "active"},
+    "expect": {"decision": "advance", "concept_index": 2}
+  }
+]

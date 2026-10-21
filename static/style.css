@@ -1,0 +1,36 @@
+* { box-sizing: border-box; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  margin: 0; background: #f7f7f8; color: #1a1a1a;
+}
+main { max-width: 860px; margin: 0 auto; padding: 24px; }
+header h1 { margin: 0 0 4px; font-size: 22px; }
+#concept { color: #666; margin: 0 0 16px; }
+
+#board {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  min-height: 220px;
+  padding: 20px;
+  font-family: "Cambria Math", Georgia, serif;
+  font-size: 20px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+#board mark { background: #ffe27a; padding: 0 2px; border-radius: 3px; }
+
+#controls { margin: 16px 0; display: flex; gap: 10px; align-items: center; }
+button {
+  padding: 10px 16px; border-radius: 8px; border: 1px solid #ccc;
+  background: #fff; cursor: pointer; font-size: 15px;
+}
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+#talkBtn.active { background: #d4f4dd; border-color: #7dcc95; }
+#status { color: #666; font-size: 14px; }
+
+#log { font-size: 13px; color: #555; max-height: 220px; overflow-y: auto; }
+#log div { padding: 4px 0; border-bottom: 1px solid #eee; }
+#log .you { color: #0b62c4; }
+#log .tutor { color: #147a3b; }
